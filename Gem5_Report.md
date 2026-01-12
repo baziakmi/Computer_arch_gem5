@@ -127,10 +127,15 @@
 Ο χώρος των πιθανών συνδυασμών περιορίστηκε με βάση τους περιορισμούς μεγέθους ($L1_{total} \le 256KB$ και $L2 \le 4MB$) και τις αρχές των Hennessy & Patterson. Οι επιλογές βασίστηκαν στα εξής κριτήρια:
 
 * [cite_start]**Associativity (Συσχετικότητα):** Με βάση το **Figure B.8**, η αύξηση της συσχετικότητας πάνω από 8-way προσφέρει μηδαμινή βελτίωση στο miss rate, ενώ αυξάνει την πολυπλοκότητα και την ενέργεια. [cite_start]Για την L1 επιλέχθηκαν τιμές 4-way και 8-way, καθώς η 1-way (direct-mapped) προκαλεί υπερβολικά conflict misses.
+
 ![Figure B.8 - Miss Rate vs Associativity](B8.png)
+
 * **Cache Line Size:** Επιλέχθηκε η σταθερή τιμή των **64 bytes**. [cite_start]Σύμφωνα με το **Figure B.10**, μικρότερα μεγέθη (π.χ. 32B) δεν εκμεταλλεύονται το spatial locality, ενώ μεγαλύτερα (128B+) αυξάνουν το miss penalty και μπορεί να προκαλέσουν cache pollution.
+  
 ![Figure B.10 - Miss Rate vs Block Size](B10.png)
+
 * [cite_start]**Μέγεθος Caches:** Αποκλείστηκαν μεγέθη κάτω από 32KB για την L1, καθώς τα working sets των σύγχρονων benchmarks οδηγούν σε υψηλά capacity misses. [cite_start]Για την L2, οι δοκιμές επικεντρώθηκαν στα 2MB και 4MB, καθώς το **Figure B.15** δείχνει ότι μικρότερα μεγέθη αυξάνουν εκθετικά τον σχετικό χρόνο εκτέλεσης.
+
 ![Figure B.15 - Execution Time vs L2 Size](B15.png)
 
 ## 2. Ανάλυση Αποτελεσμάτων (CPI_Final_Results)
