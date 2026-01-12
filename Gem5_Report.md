@@ -9,32 +9,34 @@
 * **Πυρήνες:** 1 (default).
 * **Συχνότητα Συστήματος:** 1GHz (`clock="1GHz"`).
 * **Συχνότητα CPU:** 4GHz (default).
-* **Caches:** Τρία επίπεδα. L1I και L1D για κάθε πυρήνα και L2 κοινή (`"minor": (MinorCPU, devices.L1I, devices.L1D, devices.L2)`).
+* **Caches:** Τρία επίπεδα. L1I και L1D για κάθε πυρήνα (εδώ δεν αλλάζει κάτι γιατί έχουμε εναν) και L2 κοινή (`"minor": (MinorCPU, devices.L1I, devices.L1D, devices.L2)`).
 * **Cache Line Size:** 64 bytes.
 * **Μνήμη:** DDR3_1600_8x8, μέγεθος 2 GB.
 
-### 2. Αρχεία Config και Stats
+a. ### 2. Αρχεία Config και Stats
 Επαλήθευση παραμέτρων από τα αρχεία `config.ini` και `config.json`:
 
 * **CPU:** `[system.cpu_cluster.cpus] type=BaseMinorCPU`, `"cpus": ["numThreads": 1]`.
 * **Ρολόι:** `[system.clk_domain] clock=1000` (1GHz) και `[system.cpu_cluster.clk_domain] clock=250` (4GHz - περίοδος σε ps).
 * **Μνήμη:** `"mem_ranges": ["0:2147483648"]` (2GB), `cache_line_size: 64`.
 
-#### Ορισμοί Μετρήσεων
+b. #### Ορισμοί Μετρήσεων
 * **simSeconds:** Ο αριθμός των δευτερολέπτων που εξομοιώθηκαν (Second).
 * **simTicks:** Ο αριθμός των ticks που εξομοιώθηκαν (Tick).
 * **simInsts:** Ο αριθμός των εντολών που εξομοιώθηκαν (Count).
 * **hostInstRate:** Ο ρυθμός εκτέλεσης εντολών του εξομοιωτή (Count/Second).
 
-#### Committed Instructions vs Ops
+c. #### Committed Instructions vs Ops
 * **Committed Instructions:** 5034
 * **Committed Ops:** 5841
-* **Παρατήρηση:** Το γεγονός ότι υπάρχουν 5841 Ops για 5034 Insts σημαίνει ότι περίπου το 16% των εντολών του "Hello World" ήταν αρκετά σύνθετες (micro-ops) ώστε να χρειαστούν παραπάνω από ένα βήμα στο pipeline του MinorCPU.
 
-#### Προσπελάσεις Cache (L1 & L2)
+Το γεγονός ότι υπάρχουν 5841 Ops για 5034 Insts σημαίνει ότι περίπου το 16% των εντολών του "Hello World" ήταν αρκετά σύνθετες (micro-ops) ώστε να χρειαστούν παραπάνω από ένα βήμα στο pipeline του MinorCPU.
+
+d. #### Προσπελάσεις Cache (L1 & L2)
 Ο υπολογισμός των συνολικών προσπελάσεων γίνεται ως άθροισμα Hits + Misses:
 * **L1:** 179 (misses) + 1990 (hits) = **2169** overall accesses.
 * **L2:** **480** overall accesses.
+
 
 ---
 
